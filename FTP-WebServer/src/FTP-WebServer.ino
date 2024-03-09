@@ -672,7 +672,7 @@ SDmaxSpeed =50;
       readline(PwFile, password, sizeof(password));
       PwFile.close();
     }
-
+/*  Do not log the Username and password Security risk
     String LogMessage = "";
     LogMessage += "User name:";
     LogMessage += username;
@@ -680,9 +680,9 @@ SDmaxSpeed =50;
     LogMessage += password;
     LogMessage += ":";
     Log(LogMessage);
+*/
 
-    ftpSrv.begin(username, password,host); // username, password for ftp.   (default 21, 50009 for PASV)
-                                      // ftpSrv.begin("ESP", "ESP32"); // username, password for ftp.   (default 21, 50009 for PASV)
+    ftpSrv.begin(username, password, host); // username, password for ftp.   (default 21, 50009 for PASV)
 }
 
 void Log(String Str)
