@@ -15,3 +15,6 @@ For Filzilla you wil need to setup the Connection as Active
 
 
 ![FileZilla settings](https://github.com/EmileSpecialProducts/FTP-WebServer/blob/main/FTP-WebServer/SdRoot/FilzilaSettings.png)
+
+You can use the App Network Analyzer by Jiri Techet to find your ESp on the network 
+https://play.google.com/store/apps/details?id=net.techet.netanalyzerlite.an&hl=en&pli=1
