@@ -671,6 +671,12 @@ SDmaxSpeed =50;
       readline(PwFile, username, sizeof(username));
       readline(PwFile, password, sizeof(password));
       PwFile.close();
+    } else
+    {
+      PwFile = SD.open(PASSWORDFILE, FILE_WRITE);
+      PwFile.println( username);
+      PwFile.println(password);
+      PwFile.close();
     }
 /*  Do not log the Username and password Security risk
     String LogMessage = "";
