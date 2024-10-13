@@ -648,14 +648,27 @@ SDmaxSpeed =50;
 #if defined(CONFIG_IDF_TARGET_ESP32)
     message += " HallSensor: " +String(hallRead());
 #endif
-    message += " FlashChipMode: "+String( ESP.getFlashChipMode());
+
 #else
     message += " FlashChipId: "+String( ESP.getFlashChipId());
     message += " FlashChipRealSize: "+String( ESP.getFlashChipRealSize());
 #endif 
     message += " FlashChipSize: "+String( ESP.getFlashChipSize());
     message += " FlashChipSpeed: "+String( ESP.getFlashChipSpeed());
-    message += " FlashChipMode: "+String( ESP.getFlashChipMode());
+#if not defined(CONFIG_IDF_TARGET_ESP32S3) || ESP_ARDUINO_VERSION_MAJOR > 2
+  // [ESP::getFlashChipMode crashes on ESP32S3 boards](https://github.com/espressif/arduino-esp32/issues/9816) 
+  message += " FlashChipMode: ";
+  switch( ESP.getFlashChipMode()){
+    case FM_QIO :message += "FM_QIO"; break;
+    case FM_QOUT:message += "FM_QOUT";break;
+    case FM_DIO :message += "FM_DIO"; break;
+    case FM_DOUT:message += "FM_DOUT";break;
+    case FM_FAST_READ:message += "FM_FAST_READ";break;
+    case FM_SLOW_READ:message += "FM_SLOW_READ";break;
+    default:
+      message += String(ESP.getFlashChipMode());
+  }
+#endif 
     message += " CardSpeed: " + String(SDmaxSpeed);
     message += " Build Date: "+ String (__DATE__ " " __TIME__);
     Log(message);
