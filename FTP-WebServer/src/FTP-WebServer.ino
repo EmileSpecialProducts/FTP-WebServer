@@ -655,10 +655,12 @@ SDmaxSpeed =50;
 #endif 
     message += " FlashChipSize: "+String( ESP.getFlashChipSize());
     message += " FlashChipSpeed: "+String( ESP.getFlashChipSpeed());
-#if not defined(CONFIG_IDF_TARGET_ESP32S3) || ESP_ARDUINO_VERSION_MAJOR > 2
-  // [ESP::getFlashChipMode crashes on ESP32S3 boards](https://github.com/espressif/arduino-esp32/issues/9816) 
-  message += " FlashChipMode: ";
-  switch( ESP.getFlashChipMode()){
+#if not defined(ESP8266) 
+#if ESP_ARDUINO_VERSION != ESP_ARDUINO_VERSION_VAL(2, 0, 17)
+    // [ESP::getFlashChipMode crashes on ESP32S3 boards](https://github.com/espressif/arduino-esp32/issues/9816)
+    message += " FlashChipMode: ";
+    switch (ESP.getFlashChipMode())
+    {
     case FM_QIO :message += "FM_QIO"; break;
     case FM_QOUT:message += "FM_QOUT";break;
     case FM_DIO :message += "FM_DIO"; break;
@@ -668,6 +670,7 @@ SDmaxSpeed =50;
     default:
       message += String(ESP.getFlashChipMode());
   }
+#endif
 #endif 
     message += " CardSpeed: " + String(SDmaxSpeed);
     message += " Build Date: "+ String (__DATE__ " " __TIME__);
