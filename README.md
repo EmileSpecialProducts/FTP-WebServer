@@ -1,3 +1,8 @@
+<p align="center">
+  <a href="https://buymeacoffee.com/emilespecialproducts">
+    <img alt="BuymeaCoffee" src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png">
+  </a>
+</p>
 # FTP and Web server 
 
 This is the SD-Card example for esp-arduino 8266/ESP32/S2/S3/2C3/C6.
